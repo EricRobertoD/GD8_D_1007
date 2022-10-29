@@ -61,10 +61,11 @@
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    android:background="@color/white"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/white"
                     android:padding="10dp"
                     android:src="@drawable/ic_baseline_close_24"
-                    app:tint="@android:color/holo_blue_light"/>
+                    app:tint="@android:color/holo_blue_light" />
 
             </RelativeLayout>
 
