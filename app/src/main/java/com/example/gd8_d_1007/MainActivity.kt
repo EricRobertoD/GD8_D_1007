@@ -58,9 +58,10 @@ class MainActivity : AppCompatActivity() {
 
                     //get lat long
                     val jsonObjectGeo = jsonObjectResult.getJSONObject("geometry")
-                    val jsonObjectLoc = jsonObjectResult.getJSONObject("location")
+                    val jsonObjectLoc = jsonObjectGeo.getJSONObject("location")
                     modelMain.latLoc = jsonObjectLoc.getDouble("lat")
                     modelMain.longLoc = jsonObjectLoc.getDouble("lng")
+                    modelMainList.add(modelMain)
                 }
                 initMarker(modelMainList)
             }catch (e: JSONException){
@@ -68,19 +69,21 @@ class MainActivity : AppCompatActivity() {
             }
         }catch (ignored: IOException){
             Toast.makeText(
-                this@MainActivity,"Oops Ada Yang Tidak Beres. Coba Ulang Beberapa Saat Lagi", Toast.LENGTH_SHORT
-            )
+                this@MainActivity,"Oops Ada Yang Tidak Beres. Coba Ulang Beberapa Saat Lagi",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun initMarker(modelList: List<ModelMain>){
-        for(i in modelList.indices){
+        for(i in modelList.indices) {
             overlayItem = ArrayList()
             overlayItem.add(
                 OverlayItem(
                     modelList[i].strName, modelList[i].strVicinity, GeoPoint(modelList[i].latLoc, modelList[i].longLoc)
                 )
             )
+
             val info = ModelMain()
             info.strName = modelList[i].strName
             info.strVicinity = modelList[i].strVicinity
